@@ -1,7 +1,7 @@
 class Plaga {
 	var property poblacion
 	
-	method transmitirEnfermedades(){
+	method transmiteEnfermedades(){
 		return poblacion >= 10
 	}
 }
@@ -13,7 +13,7 @@ class Cucaracha inherits Plaga{
 		return poblacion / 2
 	}
 	
-	override method transmitirEnfermedades(){
+	override method transmiteEnfermedades(){
 		return pesoPromedio >= 10 and super()
 	}
 }
@@ -35,7 +35,7 @@ class Mosquito inherits Plaga{
 		return poblacion
 	}
 	
-	override method transmitirEnfermedades(){
+	override method transmiteEnfermedades(){
 		return poblacion % 3 == 0 and super()
 	}
 }

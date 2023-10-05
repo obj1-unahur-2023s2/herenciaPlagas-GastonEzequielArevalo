@@ -1,4 +1,10 @@
-class Hogar{
+import plagas.*
+
+class Elemento {
+	const property plaga
+}
+
+class Hogar inherits Elemento{
 	var property nivelDeMugre
 	var property nivelDeConfort
 	
@@ -6,22 +12,40 @@ class Hogar{
 		return nivelDeConfort / 2 <= nivelDeMugre
 	}
 	
+	
+	method efectoDelAtaque(){
+		nivelDeMugre = plaga.nivelDeDanio()
+	}
+	
 }
 
-class Huerta{
+class Huerta inherits Elemento{
 	var property capacidadDeProduccion
-	const property nivel
+	const property nivelDeProduccion
 	
 	method esBueno(){
-		return capacidadDeProduccion > nivel
+		return capacidadDeProduccion > nivelDeProduccion
+	}
+	
+	method efectoDelAtaque(){
+		capacidadDeProduccion -= plaga.nivelDeDanio() / 10
+		if(plaga.transmiteEnfermedades()){
+			capacidadDeProduccion -= 10
+		}
 	}
 }
 
-class Mascota{
+class Mascota inherits Elemento{
 	var property nivelDeSalud
 	
 	method esBueno(){
 		return nivelDeSalud > 250
+	}
+	
+	method efectoDelAtaque(){
+		if(plaga.transmiteEnfermedades()){
+			nivelDeSalud -= 0.max(plaga.nivelDeDanio())
+		}
 	}
 }
 
